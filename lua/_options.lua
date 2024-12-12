@@ -67,7 +67,8 @@ return {
     updatetime = 50,
     timeoutlen = 400,
 
-    list = true,
+    -- list = true,
+    list = false,
     listchars = {
       eol = "↲",
       tab = "» ",

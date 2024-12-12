@@ -41,7 +41,7 @@ return {
         -- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         -- wrap = false, -- sets vim.opt.wrap
         showmode = true,
-        colorcolumn = "80",
+        colorcolumn = "100",
 
         clipboard = "",
         numberwidth = 6,

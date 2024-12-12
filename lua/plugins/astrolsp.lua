@@ -26,7 +26,7 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "python",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -46,6 +46,7 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      pyright = { settings = { python = { pythonPath = vim.fn.exepath "python3" } } },
     },
     -- customize how language servers are attached
     handlers = {

@@ -13,9 +13,7 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
-    config = function()
-      require("lsp_signature").setup()
-    end
+    config = function() require("lsp_signature").setup() end,
   },
   -- == Examples of Overriding Plugins ==
 
@@ -35,13 +33,13 @@ return {
         "    ████   ██ ██    ██ ██ ████  ████",
         "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
         "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██"
+        "    ██   ████   ████   ██ ██      ██",
       }
       return opts
-    end
+    end,
   },
   -- You can disable default plugins as follows:
-  {"max397574/better-escape.nvim", enabled = false},
+  { "max397574/better-escape.nvim", enabled = false },
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
     "L3MON4D3/LuaSnip",
@@ -49,8 +47,8 @@ return {
       require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", {"javascriptreact"})
-    end
+      luasnip.filetype_extend("javascript", { "javascriptreact" })
+    end,
   },
   {
     "windwp/nvim-autopairs",
@@ -62,11 +60,16 @@ return {
       local cond = require "nvim-autopairs.conds"
       npairs.add_rules(
         {
-          Rule("$", "$", {"tex", "latex"}):with_pair(cond.not_after_regex "%%"):with_pair(
-            -- don't add a pair if the next character is %
-            -- don't add a pair if  the previous character is xxx
-            cond.not_before_regex("xxx", 3)
-          ):with_move(cond.none()):with_del(cond.not_after_regex "xx"):with_cr(cond.none())
+          Rule("$", "$", { "tex", "latex" })
+            :with_pair(cond.not_after_regex "%%")
+            :with_pair(
+              -- don't add a pair if the next character is %
+              -- don't add a pair if  the previous character is xxx
+              cond.not_before_regex("xxx", 3)
+            )
+            :with_move(cond.none())
+            :with_del(cond.not_after_regex "xx")
+            :with_cr(cond.none()),
           -- don't move right when repeat character
           -- don't delete if the next character is xx
           -- disable adding a newline when you press <cr>
@@ -74,77 +77,49 @@ return {
         -- disable for .vim files, but it work for another filetypes
         Rule("a", "a", "-vim")
       )
-    end
+    end,
   },
   -- ! MY OWN CONFIG
   {
     "smoka7/multicursors.nvim",
     event = "VeryLazy",
     dependencies = {
-      "smoka7/hydra.nvim"
+      "smoka7/hydra.nvim",
     },
     opts = {},
-    cmd = {"MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor"},
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {
-        mode = {"v", "n"},
+        mode = { "v", "n" },
         "<Leader>m",
         "<cmd>MCstart<cr>",
-        desc = "Create a selection for selected text or word under the cursor"
-      }
-    }
+        desc = "Create a selection for selected text or word under the cursor",
+      },
+    },
   },
-  {"imsnif/kdl.vim", ft = "kdl"},
+  { "imsnif/kdl.vim", ft = "kdl" },
   {
     "jesseleite/nvim-macroni",
-    lazy = false
+    lazy = false,
   },
   {
     "Exafunction/codeium.vim",
     event = "BufEnter",
     config = function()
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set(
-        "i",
-        "<C-g>",
-        function()
-          return vim.fn["codeium#Accept"]()
-        end,
-        {expr = true}
-      )
-      vim.keymap.set(
-        "i",
-        "<C-;>",
-        function()
-          return vim.fn["codeium#CycleCompletions"](1)
-        end,
-        {expr = true}
-      )
-      vim.keymap.set(
-        "i",
-        "<C-,>",
-        function()
-          return vim.fn["codeium#CycleCompletions"](-1)
-        end,
-        {expr = true}
-      )
-      vim.keymap.set(
-        "i",
-        "<C-x>",
-        function()
-          return vim.fn["codeium#Clear"]()
-        end,
-        {expr = true}
-      )
-    end
+      vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
+      vim.keymap.set("i", "<C-;>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })
+      vim.keymap.set("i", "<C-,>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
+      vim.keymap.set("i", "<C-x>", function() return vim.fn["codeium#Clear"]() end, { expr = true })
+    end,
   },
   {
-    "simrat39/rust-tools.nvim"
+    "simrat39/rust-tools.nvim",
   },
   {
     "nosduco/remote-sshfs.nvim",
-    dependencies = {"nvim-telescope/telescope.nvim"},
-    opts = {}
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    opts = {},
   },
   {
     "folke/flash.nvim",
@@ -180,6 +155,7 @@ return {
         desc = "Toggle Flash Search"
       }
     }
+,
   },
   -- {
   --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -222,34 +198,43 @@ return {
       
         endif
       ]]
-    end
+    end,
   },
   {
     "ur4ltz/surround.nvim",
-    config = function()
-      require("surround").setup {mappings_style = "sandwich"}
-    end,
-    lazy = false
+    config = function() require("surround").setup { mappings_style = "sandwich" } end,
+    lazy = false,
   },
   {
     "Djancyp/better-comments.nvim",
-    config = function()
-      require("better-comment").Setup()
-    end,
-    lazy = false
+    config = function() require("better-comment").Setup() end,
+    lazy = false,
   },
   {
     "mbbill/undotree",
-    lazy = false
+    lazy = false,
   },
   {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter"
+      "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("refactoring").setup {}
-    end
-  }
+    config = function() require("refactoring").setup {} end,
+  },
+  {
+    "kmontocam/nvim-conda",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+    {
+      "echasnovski/mini.nvim",
+      version = false,
+      config = function() require("mini.ai").setup() end,
+    },
+  },
 }
