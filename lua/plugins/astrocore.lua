@@ -203,14 +203,12 @@ return {
           desc = "Keep the cursor to the left in long lines when deleting a line break",
         },
         ["<Leader>v"] = { '"+p', desc = "Paste from System Clipboard" },
-        ["<Leader>y"] = { '"+y', desc = "Copy to System Clipboard" },
         ["<Leader><Leader>"] = {
           function() vim.cmd "so" end,
           desc = "Source current lua file",
         },
         ["<Esc>"] = { ":noh<CR>", desc = "Remove highighting with Esc key" },
         ["<Leader>C"] = false,
-        ["<Leader>c"] = false,
         ["[b"] = { "<nop>" },
         ["]b"] = { "<nop>" },
         ["<Leader>Q"] = { "<nop>" },
@@ -358,7 +356,7 @@ return {
           silent = true,
           desc = "move selected text down",
         },
-        ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Dont copy replaced text", silent = true },
+        -- ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Dont copy replaced text", silent = true },
         ["<Leader>p"] = { '"_dP', desc = "Paste over selected text without yanking selected text" },
         -- Macros
         ["Q"] = { ":norm @q<CR>", desc = "Run macro in register `q` for selection" },
