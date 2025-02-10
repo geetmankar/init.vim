@@ -110,88 +110,89 @@ return {
             [[:let @"=@".getline('.')."\n"<CR>]],
             desc = "Append current yank to previous yank",
           },
-        },
-        ["<Leader>s"] = {
-          [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-          desc = "Replace all occurences of a word in the file",
-        },
-        ["N"] = {
-          "Nzzzv",
-          silent = true,
-          desc = "Keep cursor in center while getting prev searchterm",
-        },
-        ["n"] = {
-          "nzzzv",
-          silent = true,
-          desc = "Keep cursor in center while getting next searchterm",
-        },
-        ["<C-u>"] = {
-          "<C-u>zz",
-          silent = true,
-          desc = "Keep the cursor in the middle when moving up",
-        },
-        ["<C-d>"] = {
-          "<C-d>zz",
-          silent = true,
-          desc = "Keep the cursor in the middle when moving down",
-        },
-        ["J"] = {
-          "mzJ`z",
-          silent = true,
-          desc = "Keep the cursor to the left in long lines when deleting a line break",
-        },
-        ["<Leader>v"] = { '"+p', desc = "Paste from System Clipboard" },
-        ["<Leader><Leader>"] = {
-          function() vim.cmd "so" end,
-          desc = "Source current lua file",
-        },
-        ["<Esc>"] = { ":noh<CR>", desc = "Remove highighting with Esc key" },
-        ["<Leader>C"] = false,
-        ["[b"] = { "<nop>" },
-        ["]b"] = { "<nop>" },
-        ["<Leader>Q"] = { "<nop>" },
-        ["<Leader>q"] = { "<nop>" },
-        ["Q"] = { "@qj", desc = "Run macro in reg `q` and move to next line" },
 
-        ["<Leader>br"] = {
-          function()
-            local buf = vim.api.nvim_win_get_buf(0)
-            if vim.bo[buf].modifiable then
-              vim.cmd "set noma"
-              print "Modifiable off"
-            else
-              vim.cmd "set ma"
-              print "Modifiable on"
-            end
-          end,
-          desc = "Toggle modifiable for buffer",
-        },
+          ["<Leader>s"] = {
+            [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+            desc = "Replace all occurences of a word in the file",
+          },
+          ["N"] = {
+            "Nzzzv",
+            silent = true,
+            desc = "Keep cursor in center while getting prev searchterm",
+          },
+          ["n"] = {
+            "nzzzv",
+            silent = true,
+            desc = "Keep cursor in center while getting next searchterm",
+          },
+          ["<C-u>"] = {
+            "<C-u>zz",
+            silent = true,
+            desc = "Keep the cursor in the middle when moving up",
+          },
+          ["<C-d>"] = {
+            "<C-d>zz",
+            silent = true,
+            desc = "Keep the cursor in the middle when moving down",
+          },
+          ["J"] = {
+            "mzJ`z",
+            silent = true,
+            desc = "Keep the cursor to the left in long lines when deleting a line break",
+          },
+          ["<Leader>v"] = { '"+p', desc = "Paste from System Clipboard" },
+          ["<Leader><Leader>"] = {
+            function() vim.cmd "so" end,
+            desc = "Source current lua file",
+          },
+          ["<Esc>"] = { ":noh<CR>", desc = "Remove highighting with Esc key" },
+          ["<Leader>C"] = false,
+          ["[b"] = { "<nop>" },
+          ["]b"] = { "<nop>" },
+          ["<Leader>Q"] = { "<nop>" },
+          ["<Leader>q"] = { "<nop>" },
+          ["Q"] = { "@qj", desc = "Run macro in reg `q` and move to next line" },
 
-        -- Undo tree
-        ["<Leader>U"] = {
-          vim.cmd.UndotreeToggle,
-          silent = true,
-          desc = "Open Undo tree",
-        }, -- "<cmd>UndotreeToggle<CR>"
+          ["<Leader>br"] = {
+            function()
+              local buf = vim.api.nvim_win_get_buf(0)
+              if vim.bo[buf].modifiable then
+                vim.cmd "set noma"
+                print "Modifiable off"
+              else
+                vim.cmd "set ma"
+                print "Modifiable on"
+              end
+            end,
+            desc = "Toggle modifiable for buffer",
+          },
 
-        -- Telescope
-        ["<Leader>gf"] = {
-          function() require("telescope.builtin").git_files() end,
-          desc = "Find Git files",
-        },
+          -- Undo tree
+          ["<Leader>U"] = {
+            vim.cmd.UndotreeToggle,
+            silent = true,
+            desc = "Open Undo tree",
+          }, -- "<cmd>UndotreeToggle<CR>"
 
-        ["<Leader>fg"] = {
-          function() require("telescope.builtin").live_grep() end,
-          desc = "Find words",
-        },
+          -- Telescope
+          ["<Leader>gf"] = {
+            function() require("telescope.builtin").git_files() end,
+            desc = "Find Git files",
+          },
 
-        ["<Leader>fG"] = {
-          function()
-            require("telescope.builtin").live_grep {
-              additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-            }
-          end,
-          desc = "Find words in all files",
+          ["<Leader>fg"] = {
+            function() require("telescope.builtin").live_grep() end,
+            desc = "Find words",
+          },
+
+          ["<Leader>fG"] = {
+            function()
+              require("telescope.builtin").live_grep {
+                additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+              }
+            end,
+            desc = "Find words in all files",
+          },
         },
         -- Terminal
         t = {
